@@ -1,14 +1,14 @@
-const isFunction = require('../utilities/isFunction')
-const equal = require('../utilities/equal')
+const isFunction = require ('../utilities/isFunction')
+const equal = require ('../utilities/equal')
 
 const Nothing = () => {
   return {
     isNothing: () => true,
     isJust: () => false,
-    chain: f => Nothing(),
-    map: f => Nothing(),
-    concat: O => Nothing(),
-    ap: O => Nothing(),
+    chain: () => Nothing (),
+    map: () => Nothing (),
+    concat: () => Nothing (),
+    ap: () => Nothing (),
     orElse: y => y,
     inspect: () => `Nothing()`
   }
@@ -16,28 +16,28 @@ const Nothing = () => {
 
 const Just = x => {
   const type = 'Maybe'
-  const isSameType = equal('Maybe')
+  const isSameType = equal ('Maybe')
 
   const isNothing = () => false
   const isJust = () => true
 
   const map = f => {
-    if (!isFunction(f)) {
-      throw new TypeError('Maybe.map: must be called with a function')
+    if (!isFunction (f)) {
+      throw new TypeError ('Maybe.map: must be called with a function')
     }
 
-    return Just(f(x))
+    return Just (f (x))
   }
 
   const chain = f => {
-    if (!isFunction(f)) {
-      throw new TypeError('Maybe.chain: must be called with a function')
+    if (!isFunction (f)) {
+      throw new TypeError ('Maybe.chain: must be called with a function')
     }
 
-    const m = f(x)
+    const m = f (x)
 
-    if (!isSameType(m.type)) {
-      throw new TypeError(
+    if (!isSameType (m.type)) {
+      throw new TypeError (
         'Maybe.chain: must be called with a function that returns an Maybe'
       )
     }
@@ -45,24 +45,24 @@ const Just = x => {
   }
 
   const concat = ({ x: y }) => {
-    return Just(x.concat(y))
+    return Just (x.concat (y))
   }
 
   const ap = m => {
-    if (!isFunction(x)) {
-      throw new TypeError(
+    if (!isFunction (x)) {
+      throw new TypeError (
         'Maybe.ap: can only be called on Identity that wraps a function'
       )
     }
 
-    if (!isSameType(m.type)) {
-      throw new TypeError('Maybe.ap: must be called with another Either')
+    if (!isSameType (m.type)) {
+      throw new TypeError ('Maybe.ap: must be called with another Either')
     }
 
-    return Just(x(m.x))
+    return Just (x (m.x))
   }
 
-  const orElse = y => x
+  const orElse = () => x
 
   const inspect = () => `Just(${x})`
 
@@ -85,11 +85,11 @@ const Maybe = {}
 Maybe.Nothing = Nothing
 Maybe.Just = Just
 
-Maybe.of = x => Just(x)
+Maybe.of = x => Just (x)
 /* eslint-disable eqeqeq */
 Maybe.fromFalsy = x =>
-  x == false || isNaN(x) || x == null || x == undefined ? Nothing() : Just(x)
+  x == false || isNaN (x) || x == null || x == undefined ? Nothing () : Just (x)
 /* eslint-enable eqeqeq */
-Maybe.fromNullable = x => (x === null || x === undefined ? Nothing() : Just(x))
+Maybe.fromNullable = x => (x === null || x === undefined ? Nothing () : Just (x))
 
 module.exports = Maybe

@@ -1,0 +1,15 @@
+{
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "extends": ["eslint:recommended"],
+  "rules": {
+    "space-before-function-paren": ["error", "always"],
+    "func-call-spacing": ["error", "always"],
+    "quotes": ["error", "single", {
+      "avoidEscape": true,
+      "allowTemplateLiterals": true
+    }]
+  }
+}
