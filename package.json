@@ -7,13 +7,17 @@
   "author": "Gustaf Holm <gustafholm1@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "tap **/*.test.js",
-    "testCoverage": "tap **/*.test.js --cov",
-    "lint": "eslint **/*.js",
-    "lintFix": "eslint **/*.js --fix"
+    "play": "nodemon play.js",
+    "test": "tap lib/**/*.test.js",
+    "test-watch": "tap -w lib/**/*.test.js",
+    "lint": "eslint **/*.js --fix"
   },
   "devDependencies": {
-    "eslint": "^7.12.1",
-    "tap": "^14.10.8"
+    "eslint": "^7.21.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.2.1",
+    "tap": "^14.11.0"
   }
 }
