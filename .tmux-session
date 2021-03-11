@@ -20,4 +20,7 @@ fi
 # -s session name
 # -n window name (a new tmux session always need atleast 1 window)
 tmux new-session -d -s data-types
+tmux new-window -d -t '=data-types'
+tmux split-window -d -h
 tmux send-keys -t '=data-types:1' 'git log --oneline | head' Enter
+tmux send-keys -t '=data-types:1.right' 'npm run test-watch' Enter

@@ -8,8 +8,8 @@
   "license": "MIT",
   "scripts": {
     "play": "nodemon play.js",
-    "test": "tap lib/**/*.test.js",
-    "test-watch": "tap -w lib/**/*.test.js",
+    "test": "tap ./lib/**/*.test.js",
+    "test-watch": "tap --watch ./lib/**/*.test.js",
     "lint": "eslint **/*.js --fix"
   },
   "devDependencies": {
